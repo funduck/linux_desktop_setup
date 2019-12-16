@@ -37,7 +37,10 @@ When playing audio, for example Firefox, one should see
 ![](./qjackctl-audio-connections.png)
 
 ## MIDI keyboard with sampler
-Compile [LinuxSampler](https://linuxsampler.org) with JACK, you'll need `libjack-jackd2-dev` for that  
+Set midi driver `seq` in qjackctl parameters  
+![](./qjackctl-parameters.png)  
+
+Compile [LinuxSampler](https://linuxsampler.org) with JACK, you'll need `apt install libjack-jackd2-dev` for that  
 
 Start JACK audio output channel in JSampler (LinuxSampler GUI)
 ![](./jsampler.png)  
