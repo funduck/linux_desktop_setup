@@ -1,0 +1,134 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          jackd
+# Required-Start:    $local_fs $remote_fs $syslog
+# Required-Stop:     $local_fs $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# X-Interactive:     true
+# Short-Description: jackd daemon
+# Description:       This script starts audio server JACK, 
+### END INIT INFO
+
+_user=oomilekh
+_program="/usr/bin/jackd"
+_card=0
+_pidfile=/tmp/jackd.pid
+
+_stop_pulseaudio() {
+    pulseaudio -k
+}
+
+_start_pulseaudio() {
+    pulseaudio -D
+}
+
+_status() {
+    [ ! -e $_pidfile ] && return 3
+
+    pid=`cat $_pidfile`
+    ps --no-headers -o command -p $pid | grep "/bin/bash -c $_program" > /dev/null && return 0
+
+    return 1
+}
+
+_start() {
+    [ `whoami` != $_user ] && { \
+        echo "only $_user can start JACK"
+        exit 1
+    }
+
+    # Check if already running
+    _status && return 0
+
+    # Select preferred card
+    preferred_card=`arecord -l | grep card | grep USB | sed 's/card \([0-9]\):.*/\1/' | head -1`
+    [ ! -z "$preferred_card" ] && _card=$preferred_card
+
+    _args="-v -dalsa -dhw:$_card -r44100 -p512 -n2 -Xseq"
+    _cmd="$_program $_args | logger -t $_user[jackd]"
+
+    # Pulseaudio needs restart to use new JACK server
+    _stop_pulseaudio
+
+    start-stop-daemon --start --pidfile $_pidfile --make-pidfile \
+                      --background \
+                      --startas /bin/bash -- -c "$_cmd"
+    _start_pulseaudio
+}
+
+_stop() {
+    _status
+    stat=$?
+    # Pulseaudio needs restart to work witout JACK server
+    [ $stat = 0 ] && _stop_pulseaudio
+
+    # It kills parent process of jackd
+    start-stop-daemon --stop --pidfile $_pidfile --remove-pidfile
+
+    # Kill jackd except this script
+    pgrep jackd | grep -v $$ | while read pid; do kill $pid ; done
+
+    [ $stat = 0 ] && _start_pulseaudio
+}
+
+_restart() {
+    _stop
+    _start
+}
+
+_try_restart() {
+    _status
+    [ $? = 0 ] && { \
+        _stop
+        _start
+    }
+}
+
+_reload() {
+    _restart
+}
+
+_force_reload() {
+    _restart
+}
+
+echo "$1" | logger -t jackd.service
+
+case "$1" in
+  start)
+    _start
+    ;;
+  stop)
+    _stop
+    ;;
+  # Stop and restart the service if the service is already running, otherwise start the service
+  restart)
+    _restart
+    ;;
+  # Restart the service if the service is already running
+  try-restart)
+    _try_restart
+    ;;
+  # Cause the configuration of the service to be reloaded without actually stopping and restarting the service
+  reload)
+    _reload
+    ;;
+  # Cause the configuration to be reloaded if the service supports this, otherwise restart the service if it is running
+  force-reload)
+    _force_reload
+    ;;
+  status)
+    _status
+    res=$?
+    case $res in
+        0) echo program is running ;;
+        1) echo program is not running and the pid file exists ;;
+        3) echo program is not running ;;
+        4) echo unable to determine status ;;
+    esac
+    return $res
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|restart|try-restart|reload|try-reload|status}"
+esac
