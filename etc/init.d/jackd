@@ -45,23 +45,28 @@ _start() {
     preferred_card=`arecord -l | grep card | grep USB | sed 's/card \([0-9]\):.*/\1/' | head -1`
     [ ! -z "$preferred_card" ] && _card=$preferred_card
 
-    _args="-v -dalsa -dhw:$_card -r44100 -p512 -n2 -Xseq"
+    _args=" -dalsa -dhw:$_card -r44100 -p512 -n2 -Xseq"
     _cmd="$_program $_args | logger -t $_user[jackd]"
 
     # Pulseaudio needs restart to use new JACK server
-    _stop_pulseaudio
+    should_restart_pulse=`pgrep pulseaudio`
+    [ ! -z "$should_restart_pulse" ] && _stop_pulseaudio
 
     start-stop-daemon --start --pidfile $_pidfile --make-pidfile \
                       --background \
                       --startas /bin/bash -- -c "$_cmd"
-    _start_pulseaudio
+    [ ! -z "$should_restart_pulse" ] && _start_pulseaudio
+    
+    echo "jackd: `ps -C jackd -o start_time,pid,cmd --no-headers`"
+    echo "pulse: `ps -C pulseaudio -o start_time,pid,cmd --no-headers`"
 }
 
 _stop() {
     _status
     stat=$?
     # Pulseaudio needs restart to work witout JACK server
-    [ $stat = 0 ] && _stop_pulseaudio
+    should_restart_pulse=`pgrep pulseaudio`
+    [ $stat = 0 ] && [ ! -z "$should_restart_pulse" ] && _stop_pulseaudio
 
     # It kills parent process of jackd
     start-stop-daemon --stop --pidfile $_pidfile --remove-pidfile
@@ -69,7 +74,7 @@ _stop() {
     # Kill jackd except this script
     pgrep jackd | grep -v $$ | while read pid; do kill $pid ; done
 
-    [ $stat = 0 ] && _start_pulseaudio
+    [ $stat = 0 ] && [ ! -z "$should_restart_pulse" ] && _start_pulseaudio
 }
 
 _restart() {
