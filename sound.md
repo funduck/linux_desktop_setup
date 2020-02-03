@@ -29,23 +29,20 @@ Install JACK and module to route PulseAudio to JACK
 apt install jack jackd2 libjack-jackd2-dev pulseaudio-utils pulseaudio-module-jack
 ```
 
-add to /etc/pulse/default.pa  
+Configure qjackctl `setup->options`  
+[script](./jackctl_after_start.sh) after startup
 ```
-load-module module-jack-sink
-load-module module-jack-source
+pactl load-module module-jack-sink
+pactl load-module module-jack-source
+pacmd set-default-sink jack_out
 ```
-
-restart pulseaudio
+[script](./jackctl_before_stop.sh) before shutdown
 ```
-pulseaudio -k
-pulseaudio -D
+pactl unload-module module-jack-sink
+pactl unload-module module-jack-source
 ```
-
-JACK must be started before any sound application, I failed to make it a service, so I use [this script](./etc/init.d/jackd) in my `.bashrc` to start JACK. 
-It's fine for me since usually I run my apps from terminal.
-```
-/etc/init.d/jackd start
-```
+This way when you start jack server in qjackctl, pulseaudio will use it (but in player you have to pause/play).  
+And when you stop jack, pulseaudio will fall back to direct use of sound card instantly.  
 
 When playing audio, for example in Firefox, one should see  
 

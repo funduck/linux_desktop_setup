@@ -1,0 +1,248 @@
+22:42:04.004 Logging started --- Fri Dec 27 22:42:04 2019 ---
+22:42:04.053 Statistics reset.
+22:42:04.060 ALSA connection change.
+22:42:04.086 JACK connection change.
+22:42:04.092 Client activated.
+22:42:04.093 Patchbay activated.
+22:42:04.297 JACK active patchbay scan...
+22:42:04.298 qjackctl_patchbay: LinuxSampler:0 -> system:playback_1 connected.
+22:42:04.313 qjackctl_patchbay: LinuxSampler:1 -> system:playback_2 connected.
+22:42:04.313 ALSA active patchbay scan...
+22:42:04.327 JACK connection graph change.
+22:42:04.530 JACK active patchbay scan...
+22:42:04.533 qjackctl_patchbay: LinuxSampler:0 -> system:playback_1 checked.
+22:42:04.534 qjackctl_patchbay: LinuxSampler:1 -> system:playback_2 checked.
+22:42:17.583 Client deactivated.
+22:42:17.606 Logging stopped --- Fri Dec 27 22:42:17 2019 ---
+23:29:18.927 Logging started --- Fri Dec 27 23:29:18 2019 ---
+23:29:18.994 Statistics reset.
+23:29:18.999 ALSA connection change.
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
+23:29:32.166 Logging stopped --- Fri Dec 27 23:29:32 2019 ---
+23:29:33.960 Logging started --- Fri Dec 27 23:29:33 2019 ---
+23:29:34.006 Statistics reset.
+23:29:34.012 ALSA connection change.
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
+23:29:37.500 JACK is starting...
+23:29:37.501 /usr/bin/jackd -v -dalsa -dhw:0 -r44100 -p512 -n2 -Xseq
+Cannot connect to server socket err = No such file or directory
+Cannot connect to server request channel
+jack server is not running or cannot be started
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
+JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for 4294967295, skipping unlock
+jackdmp 1.9.11
+Copyright 2001-2005 Paul Davis and others.
+Copyright 2004-2014 Grame.
+jackdmp comes with ABSOLUTELY NO WARRANTY
+This is free software, and you are welcome to redistribute it
+under certain conditions; see the file COPYING for details
+JACK server starting in realtime mode with priority 10
+self-connect-mode is "Don't restrict self connect requests"
+23:29:37.527 JACK was started with PID=9812.
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: playback device hw:0
+Jack: capture device hw:0
+Jack: apparent rate = 44100
+Jack: frames per period = 512
+Jack: JackDriver::Open capture_driver_name = hw:0
+Jack: JackDriver::Open playback_driver_name = hw:0
+Jack: Check protocol client = 8 server = 8
+Jack: JackEngine::ClientInternalOpen: name = system
+Jack: JackEngine::AllocateRefNum ref = 0
+Jack: JackPosixSemaphore::Allocate name = jack_sem.1000_default_system val = 0
+Jack: JackEngine::NotifyAddClient: name = system
+Jack: JackGraphManager::SetBufferSize size = 512
+Jack: JackConnectionManager::DirectConnect first: ref1 = 0 ref2 = 0
+Jack: JackGraphManager::ConnectRefNum cur_index = 0 ref1 = 0 ref2 = 0
+Jack: JackDriver::SetupDriverSync driver sem in flush mode
+audio_reservation_init
+Acquire audio card Audio0
+creating alsa driver ... hw:0|hw:0|512|2|44100|0|0|nomon|swmeter|-|32bit
+configuring for 44100Hz, period = 512 frames (11.6 ms), buffer = 2 periods
+ALSA: final selected sample format for capture: 32bit integer little-endian
+ALSA: use 2 periods for capture
+ALSA: final selected sample format for playback: 32bit integer little-endian
+ALSA: use 2 periods for playback
+Jack: JackSocketServerChannel::Open
+Jack: JackServerSocket::Bind : addr.sun_path /dev/shm/jack_default_1000_0
+Jack: JackSocketServerChannel::BuildPoolTable size = 1
+Jack: JackEngine::Open
+Jack: JackClientSocket::Connect : addr.sun_path /dev/shm/jack_default_1000_0
+Jack: JackEngine::ClientInternalOpen: name = freewheel
+Jack: JackEngine::AllocateRefNum ref = 1
+Jack: JackPosixSemaphore::Allocate name = jack_sem.1000_default_freewheel val = 0
+Jack: JackEngine::NotifyAddClient: name = freewheel
+Jack: JackDriver::ClientNotify ref = 1 driver = system name = freewheel notify = 0
+Jack: JackDriver::ClientNotify ref = 0 driver = freewheel name = system notify = 0
+Jack: JackConnectionManager::DirectConnect first: ref1 = 1 ref2 = 1
+Jack: JackGraphManager::ConnectRefNum cur_index = 0 ref1 = 1 ref2 = 1
+Jack: JackDriver::SetupDriverSync driver sem in flush mode
+Jack: JackGraphManager::SetBufferSize size = 512
+Jack: JackAlsaDriver::Attach fBufferSize 512 fSampleRate 44100
+Jack: JackEngine::PortRegister ref = 0 name = system:capture_1 type = 32 bit float mono audio flags = 22 buffer_size = 512
+Jack: JackGraphManager::AllocatePortAux port_index = 1 name = system:capture_1 type = 32 bit float mono audio
+Jack: JackConnectionManager::AddOutputPort ref = 0 port = 1
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+Jack: JackAlsaDriver::Attach fCapturePortList[i] 1 
+Jack: JackEngine::PortRegister ref = 0 name = system:capture_2 type = 32 bit float mono audio flags = 22 buffer_size = 512
+Jack: JackGraphManager::AllocatePortAux port_index = 2 name = system:capture_2 type = 32 bit float mono audio
+Jack: JackConnectionManager::AddOutputPort ref = 0 port = 2
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+Jack: JackAlsaDriver::Attach fCapturePortList[i] 2 
+Jack: JackEngine::PortRegister ref = 0 name = system:playback_1 type = 32 bit float mono audio flags = 21 buffer_size = 512
+Jack: JackGraphManager::AllocatePortAux port_index = 3 name = system:playback_1 type = 32 bit float mono audio
+Jack: JackConnectionManager::AddInputPort ref = 0 port = 3
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+Jack: JackAlsaDriver::Attach fPlaybackPortList[i] 3 
+Jack: JackEngine::PortRegister ref = 0 name = system:playback_2 type = 32 bit float mono audio flags = 21 buffer_size = 512
+Jack: JackGraphManager::AllocatePortAux port_index = 4 name = system:playback_2 type = 32 bit float mono audio
+Jack: JackConnectionManager::AddInputPort ref = 0 port = 4
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+Jack: JackAlsaDriver::Attach fPlaybackPortList[i] 4 
+Jack: Clock source : system clock via clock_gettime
+Jack: JackServer::Start
+Jack: JackThreadedDriver::Start
+Jack: JackEngine::PortRegister ref = 0 name = system:midi_capture_1 type = 8 bit raw midi flags = 22 buffer_size = 0
+Jack: JackGraphManager::AllocatePortAux port_index = 5 name = system:midi_capture_1 type = 8 bit raw midi
+Jack: JackConnectionManager::AddOutputPort ref = 0 port = 5
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+port created: Midi-Through:midi/playback_1
+Jack: JackEngine::PortRegister ref = 0 name = system:midi_playback_1 type = 8 bit raw midi flags = 21 buffer_size = 0
+Jack: JackGraphManager::AllocatePortAux port_index = 6 name = system:midi_playback_1 type = 8 bit raw midi
+Jack: JackConnectionManager::AddInputPort ref = 0 port = 6
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+port created: Midi-Through:midi/capture_1
+Jack: JackEngine::PortRegister ref = 0 name = system:midi_playback_2 type = 8 bit raw midi flags = 1 buffer_size = 0
+Jack: JackGraphManager::AllocatePortAux port_index = 7 name = system:midi_playback_2 type = 8 bit raw midi
+Jack: JackConnectionManager::AddInputPort ref = 0 port = 7
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+Jack: JackEngine::ClientNotify: no callback for notification = 9
+port created: LinuxSampler:midi/capture_1
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackThreadedDriver::Init real-time
+Jack: JackPosixThread::AcquireRealTimeImp priority = 10
+Jack: JackPosixThread::StartImp : create non RT thread
+Jack: JackPosixThread::ThreadHandler : start
+Jack: JackSocketServerChannel::ClientCreate socket
+Jack: JackSocketServerChannel::BuildPoolTable size = 2
+Jack: JackSocketServerChannel::BuildPoolTable fSocketTable i = 1 fd = 10
+23:29:37.633 ALSA connection graph change.
+Jack: JackSocketServerChannel::Execute : fPollTable i = 1 fd = 10
+Jack: JackRequest::Notification
+Jack: JackDriver::ClientNotify ref = 1 driver = freewheel name = freewheel notify = 18
+Jack: JackDriver::ClientNotify ref = 1 driver = freewheel name = freewheel notify = 18
+Jack: JackDriver::ClientNotify ref = 1 driver = freewheel name = freewheel notify = 18
+Jack: JackDriver::ClientNotify ref = 1 driver = freewheel name = freewheel notify = 18
+Jack: JackEngine::ClientNotify: no callback for notification = 4
+Jack: JackEngine::ClientNotify: no callback for notification = 4
+23:29:39.673 JACK connection change.
+23:29:39.675 Server configuration saved to "/home/oomilekh/.jackdrc".
+23:29:39.675 Statistics reset.
+23:29:39.687 Client activated.
+23:29:39.688 Patchbay deactivated.
+23:29:39.689 Post-startup script...
+23:29:39.690 pacmd set-default-sink jack_out
+Jack: JackSocketServerChannel::Execute : fPollTable i = 1 fd = 10
+Jack: JackSocketServerChannel::ClientCreate socket
+Jack: JackSocketServerChannel::BuildPoolTable size = 3
+Jack: JackSocketServerChannel::BuildPoolTable fSocketTable i = 1 fd = 10
+Jack: JackSocketServerChannel::BuildPoolTable fSocketTable i = 2 fd = 11
+Jack: JackSocketServerChannel::Execute : fPollTable i = 1 fd = 10
+Jack: JackSocketServerChannel::Execute : fPollTable i = 2 fd = 11
+Jack: JackSocketServerChannel::Execute : poll client error err = Success
+Jack: JackSocketServerChannel::ClientKill ref = -1 fd = 11
+Jack: Client was not opened : probably correspond to server_check
+Jack: JackClientSocket::Close
+Jack: JackSocketServerChannel::BuildPoolTable size = 2
+Jack: JackSocketServerChannel::BuildPoolTable fSocketTable i = 1 fd = 10
+Jack: JackSocketServerChannel::Execute : fPollTable i = 1 fd = 10
+Jack: JackSocketServerChannel::ClientCreate socket
+Jack: JackSocketServerChannel::BuildPoolTable size = 3
+Jack: JackSocketServerChannel::BuildPoolTable fSocketTable i = 1 fd = 10
+Jack: JackSocketServerChannel::BuildPoolTable fSocketTable i = 2 fd = 11
+Jack: JackSocketServerChannel::Execute : fPollTable i = 1 fd = 10
+Jack: JackSocketServerChannel::Execute : fPollTable i = 2 fd = 11
+Jack: JackRequest::ClientCheck
+Jack: Check protocol client = 8 server = 8
+Jack: JackRequest::ClientOpen
+Jack: JackEngine::ClientExternalOpen: uuid = 0, name = qjackctl
+Jack: JackEngine::AllocateRefNum ref = 2
+Jack: JackPosixSemaphore::Allocate name = jack_sem.1000_default_qjackctl val = 0
+Jack: JackSocketNotifyChannel::Open name = qjackctl
+Jack: JackClientSocket::Connect : addr.sun_path /dev/shm/jack_qjackctl_1000_0
+Jack: JackShmMem::new index = 2 attached = a527c000 size = 422 
+Jack: JackExternalClient::Open name = qjackctl index = 2 base = a527c000
+Jack: JackPosixProcessSync::TimedWait time out = 5000000
+Jack: JackPosixProcessSync::TimedWait finished delta = 944.0
+Jack: JackEngine::NotifyAddClient: name = qjackctl
+Jack: JackDriver::ClientNotify ref = 2 driver = system name = qjackctl notify = 0
+Jack: JackExternalClient::ClientNotify ref = 0 client = qjackctl name = system notify = 0
+Jack: JackDriver::ClientNotify ref = 2 driver = freewheel name = qjackctl notify = 0
+Jack: JackExternalClient::ClientNotify ref = 1 client = qjackctl name = freewheel notify = 0
+Jack: JackSocketServerChannel::ClientAdd ref = 2 fd = 11
+Jack: JackSocketServerChannel::BuildPoolTable size = 3
+Jack: JackSocketServerChannel::BuildPoolTable fSocketTable i = 1 fd = 10
+Jack: JackSocketServerChannel::BuildPoolTable fSocketTable i = 2 fd = 11
+Jack: JackClient::SetupDriverSync driver sem in flush mode
+Jack: JackPosixSemaphore::Connect name = jack_sem.1000_default_qjackctl
+Jack: JackPosixSemaphore::Connect sem_getvalue 0
+Jack: Clock source : system clock via clock_gettime
+Jack: JackLibClient::Open name = qjackctl refnum = 2
+Jack: jack_set_graph_order_callback ext_client d4718200 client d4718200 
+Jack: WaitGraphChange...
+Jack: JackSocketServerChannel::Execute : fPollTable i = 1 fd = 10
+Jack: JackRequest::Notification
+Jack: JackDriver::ClientNotify ref = 1 driver = freewheel name = freewheel notify = 18
+Jack: JackDriver::ClientNotify ref = 1 driver = freewheel name = freewheel notify = 18
+Jack: JackDriver::ClientNotify ref = 1 driver = freewheel name = freewheel notify = 18
+Jack: JackDriver::ClientNotify ref = 1 driver = freewheel name = freewheel notify = 18
+Jack: JackEngine::ClientNotify: no callback for notification = 4
+Jack: JackEngine::ClientNotify: no callback for notification = 4
+Jack: JackExternalClient::ClientNotify ref = 2 client = qjackctl name = qjackctl notify = 4
+Jack: JackSocketServerChannel::Execute : fPollTable i = 2 fd = 11
+Jack: JackClient::ClientNotify ref = 2 name = qjackctl notify = 4
+Jack: JackClient::Activate
+Jack: JackSocketServerChannel::Execute : fPollTable i = 1 fd = 10
+Jack: JackSocketServerChannel::Execute : fPollTable i = 2 fd = 11
+Jack: JackRequest::ActivateClient
+Jack: JackEngine::ClientActivate ref = 2 name = qjackctl
+Jack: JackPosixProcessSync::TimedWait time out = 232180
+Jack: JackPosixProcessSync::TimedWait finished delta = 9478.0
+Jack: JackExternalClient::ClientNotify ref = 2 client = qjackctl name = qjackctl notify = 2
+Jack: JackClient::ClientNotify ref = 2 name = qjackctl notify = 2
+Jack: JackClient::kActivateClient name = qjackctl ref = 2 
+Jack: JackSocketServerChannel::Execute : fPollTable i = 1 fd = 10
+Jack: JackRequest::Notification
+Jack: JackDriver::ClientNotify ref = 1 driver = freewheel name = freewheel notify = 18
+Jack: JackDriver::ClientNotify ref = 1 driver = freewheel name = freewheel notify = 18
+Jack: JackDriver::ClientNotify ref = 1 driver = freewheel name = freewheel notify = 18
+Jack: JackDriver::ClientNotify ref = 1 driver = freewheel name = freewheel notify = 18
+Jack: JackEngine::ClientNotify: no callback for notification = 4
+Jack: JackEngine::ClientNotify: no callback for notification = 4
+Jack: JackExternalClient::ClientNotify ref = 2 client = qjackctl name = qjackctl notify = 4
+Jack: JackSocketServerChannel::Execute : fPollTable i = 2 fd = 11
+Jack: JackClient::ClientNotify ref = 2 name = qjackctl notify = 4
+Jack: JackClient::kGraphOrderCallback
+23:29:39.756 JACK connection graph change.
+Sink jack_out does not exist.
+23:29:40.400 Post-startup script terminated successfully.
+Jack: JackSocketServerChannel::Execute : fPollTable i = 1 fd = 10
+Jack: JackSocketServerChannel::Execute : fPollTable i = 2 fd = 11
+Jack: JackSocketServerChannel::Execute : fPollTable i = 1 fd = 10
+Jack: JackSocketServerChannel::Execute : fPollTable i = 2 fd = 11
