@@ -41,6 +41,8 @@ pacmd set-default-sink jack_out
 pactl unload-module module-jack-sink
 pactl unload-module module-jack-source
 ```
+![](./images/qjackctl-setup-options.png)  
+
 This way when you start jack server in qjackctl, pulseaudio will use it (but in player you have to pause/play).  
 And when you stop jack, pulseaudio will fall back to direct use of sound card instantly.  
 
