@@ -76,3 +76,56 @@ Connect MIDI keyboard to LinuxSampler port and LinuxSampler to system like this
 
 You can save configuration in JSampler as script and execute it directly in LinuxSampler.  
 Check [here](./linuxsampler)
+
+## Switch to headset mic
+This is how to automatically switch the microphone on plug/unplug:
+
+acpi_listen is the tool to detect when you plug/unplug the headset. This is what it detects:
+```
+jack/headphone HEADPHONE unplug
+jack/headphone HEADPHONE plug
+```
+pulseaudio is where we can switch source ports
+
+In my system to select headset microphone:
+```
+pacmd set-source-port alsa_input.pci-0000_00_1f.3.analog-stereo analog-input-headset-mic
+```
+To select internal microphone:
+```
+pacmd set-source-port alsa_input.pci-0000_00_1f.3.analog-stereo analog-input-internal-mic
+```
+You can use pacmd list-cards to get a list of sources names and ports names.
+You can also use the terminal auto-complete feature to help craft the commands.
+Now, let's bring everything together:
+
+Switch to root with sudo su and create the script /etc/acpi/headset-microphone.sh
+```
+#!/bin/sh
+export PULSE_RUNTIME_PATH="/run/user/1000/pulse/"
+if [ "$1" = plug ]; then
+  sudo -u you -E pacmd set-source-port alsa_input.pci-0000_00_1f.3.analog-stereo analog-input-headset-mic
+else
+  sudo -u you -E pacmd set-source-port alsa_input.pci-0000_00_1f.3.analog-stereo analog-input-internal-mic
+fi
+```
+be sure to:
+
+    change you to your username
+    replace the pulseaudio source and ports with your values
+    make the script executable, `chmod a+x /etc/acpi/headset-microphone.sh`
+
+then create the event listener, creating a file ´/etc/acpi/events/headset-microphone-plug´:
+```
+event=jack/headphone HEADPHONE plug
+action=/etc/acpi/headset-microphone.sh plug
+```
+and the unplug event listener, creating a file ´/etc/acpi/events/headset-microphone-unplug´:
+```
+event=jack/headphone HEADPHONE unplug
+action=/etc/acpi/headset-microphone.sh unplug
+```
+and, as last thing, restart the acpi listening events service
+```
+systemctl restart acpid.service
+```
